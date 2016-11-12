@@ -1,0 +1,23 @@
+{
+  "name": "fe-learn",
+  "version": "1.0.0",
+  "description": "学习记录",
+  "main": "index.js",
+  "scripts": {
+    "server": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JiaYii/fe-learn.git"
+  },
+  "author": "jiayi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JiaYii/fe-learn/issues"
+  },
+  "homepage": "https://github.com/JiaYii/fe-learn#readme",
+  "devDependencies": {
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
