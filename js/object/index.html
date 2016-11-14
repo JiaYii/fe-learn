@@ -8,30 +8,10 @@
     <header>
       <h2>JavaScript之对象</h2>
     </header>
-    <section>
-      <h2>定义：</h2>
-      <p>javascript的基本数据类型，它有很多值可以看作属性的无序集合。属性包括名字和值，属性名是包含空字符串在内的任意字符串，属性值可以是任意javascript值或者（es5）是一个getter／setter函数。属性还包括值／可写／可枚举／可配置的特性</p>
-      <h2>方法总结：</h2>
+    <section class="container">
+      <h3>getter和setter</h3>
       <div>
-        <h3>继承属性</h3>
-        <p>作用之一是防止库函数无意间修改那些不受你控制的对象。因为不是将对象直接作为参数传人函数，而是将它的继承对象传人函数。所以函数操作的都是继承对象。</p>
-        <h3>getter和setter</h3>
-        <p>
-          1.使用存取器属性定义API,API提供了表示同一组数据的两种方法。<br>
-          2.智能检测属性的写入值以及每次读取返回不同值。
-        </p>
-        <h3>查询和设置属性API</h3>
-        <P>
-          1.可以通过这些API给原型对象添加方法，并将它们设置成不可枚举的，这让它们看起来更像内置方法。<br>
-          2.可以通过这些API给对象定义不能修改或删除的属性，借此“锁定”这个对象。
-          3.属性描述符对象(可以通过object.getOwnPropertyDescriptor())获取某个对象特定的属性描述符
-          4.设置属性的特性Object.definePeoperty()
-        </P>
-        <h3>对象的三个属性(原型prototype/类class/可扩展性extensible)</h3>
-        <p>
-          1.创建对象的三种方式：Object.create()/对象之间量／构造函数
-          2.
-        </p>
+        <input name="" id="texing_input" placeholder="请输入" value="getter和setter测试"> <span id="texing_output"></span>
       </div>
     </section>
   </div>

@@ -1,7 +1,7 @@
 window.onload = function () {
   
+/*原型继承创建一个新对象*/
 
-  /*原型继承创建一个新对象*/
   var inherit = function (p) {
     if (p == null) { throw typeError() }
     if (Object.create) { return Object.create(p) }
@@ -18,46 +18,29 @@ window.onload = function () {
   change(inherit(o))
   
 
-  /*getter/setter*/
-  var p = {
-    x: 1,
-    y: 1,
-    get r() {
-      return Math.sqrt(this.x*this.x + this.y*this.y)
-    },
-    set r(newvalue) {
-      var oldvalue = Math.sqrt(this.x*this.x + this.y*this.y)
-      var ratio = newvalue/oldvalue
-      this.x*=ratio
-      this.y*=ratio
-    },
-    get theta() {
-      return Math.atan2(this.y, this.x)
-    }
-  }
-  console.log(p.r)
-  console.log(p.theta)
+/*getter/setter*/
 
-  var serialnum = {
-    $n: 0,
+  var texing_input = document.getElementById('texing_input'),
+      texing_output = document.getElementById('texing_output')
+  serialnum = {
+    $n: 2,
     get next() { return ++this.$n },
     set next(n) {
-      if (n >= this.$n) {
-        this.$n = n*3
-      } else {
-        throw '序列号不能比当前值小'
-      }
+      texing_output.innerHTML = n
     }
   }
-  console.log(serialnum.next)
-  console.log(serialnum.next)
-  serialnum.next = 5
-  console.log(serialnum.next)
-  console.log(serialnum.$n)
+  
+  serialnum.next = texing_input.value;
+  texing_input.addEventListener('blur', function () {
+    serialnum.next = texing_input.value
+  })
 
-  console.log(Object.getOwnPropertyDescriptor({x:1}, 'x'))/*属性描述符*/
+/*属性描述符*/
 
-  /*设置属性的特性（Object.defineProperty()）*/
+  console.log(Object.getOwnPropertyDescriptor({x:1}, 'x'))
+
+/*设置属性的特性（Object.defineProperty()）*/
+
   var o2 = {}
   Object.defineProperty(o2, 'x', {
     value: 2,
@@ -68,4 +51,5 @@ window.onload = function () {
   console.log(o2)
   console.log(o2.x)
   console.log(Object.keys(o2))
+
 }
