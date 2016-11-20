@@ -31,7 +31,7 @@ window.onload = function () {
   }
   
   serialnum.next = texing_input.value;
-  texing_input.addEventListener('blur', function () {
+  texing_input.addEventListener('input', function () {
     serialnum.next = texing_input.value
   })
 

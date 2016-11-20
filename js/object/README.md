@@ -10,22 +10,34 @@
 
 javascript的基本数据类型，它将很多值聚合在一起，很多值可以看作属性的无序集合。属性包括名字和值，属性名是包含空字符串在内的任意字符串，属性值可以是任意javascript值或者（es5）是一个getter／setter函数。属性还包括值／可写／可枚举／可配置的特性。
 
-## 属性特性
+
+## 对象的属性（自我理解为特性）
+
+> 每一个对象都有与之相关的原型（prototype）、类（class）、和可扩展性（extensible）
+
+**1.原型属性：**原型属性是用来继承属性的
+
+**2.类：**是一个字符串，表示对象的类型信息。
+
+**3.可扩展性：**可扩展性表示是否可以给对象添加新属性，所有内置对象和自定义对象都是显式可扩展的，宿主对象可扩展性是由javascript引擎定义的。
+
+
+## 对象属性特性
 
 >  对象属性除了名字和值(es5中setter,getter)之外，属性还包括一些可写/可枚举/可配置等特性。这些属性特性的集合在es5中叫“属性描述符对象(property descriptor)”。
 
 描述符对象包括：
 
 + 值
-    - value (属性值，可以是任意javascript值)
-    - getter (es5中可以用getter方法代替值，目标属性被访问就会调此方法并返回运算结果)
+    - value： (属性值，可以是任意javascript值)
+    - getter： (es5中可以用getter方法代替值，目标属性被访问就会调此方法并返回运算结果)
 + 可写性
-    - writable (布尔值，表明是否可以重写该属性的值)
-    - setter (是否可写或es5中setter)
+    - writable： (布尔值，表明是否可以重写该属性的值)
+    - setter： (是否可写或es5中setter)
 + 可枚举 
-    - enumerable (布尔值：是否可以用for／in 或 Object.keys中列举出来)
+    - enumerable： (布尔值：是否可以用for／in 或 Object.keys中列举出来)
 + 可配置
-    - configurable (布尔值：是否可以删除或修改属性特性)
+    - configurable： (布尔值：是否可以删除或修改属性特性)
 
 ### 1.通过Object.getOwnPropertyDescriptor()可以获得某个对象特定属性的描述符：
 
@@ -40,9 +52,11 @@ Object.getOwnPropertyDescriptor({x: 2}, 'x')
 
 对象属性是由名字（key）/值（value） 和 一组特性（属性描述符对象）构成。在es5中属性值可以由一个或两个方法（getter/setter）代替。getter和setter定义的属性叫存取器属性。
 
-+ 存取器属性运行机制
-    - 查询(value) 查询时javascript调用getter方法（无参数）返回值就是getter方法表达式的值。
-    - 设置(writable) 设置时javascript调用setter方法，将赋值表达式右侧当做参数传人setter。
+存取器属性运行机制
+
++ 查询(value) 查询时javascript调用getter方法（无参数）返回值就是getter方法表达式的值。
++ 设置(writable) 设置时javascript调用setter方法，将赋值表达式右侧当做参数传人setter。
+
 存取器属性（serialnum.next）直接量写法
 
 ```javascript
@@ -91,6 +105,8 @@ vue.js的官方文档这样描述：
 
 例子（可见object.js）
 
+当改变input标签的value值，span标签的值也会同步改变。
+
 ```html
   <div>
     <input name="" id="texing_input" placeholder="请输入" value="getter和setter测试"> 
@@ -111,11 +127,24 @@ vue.js的官方文档这样描述：
   }
   
   serialnum.next = texing_input.value;
-  texing_input.addEventListener('blur', function () {
+  texing_input.addEventListener('input', function () {
     serialnum.next = texing_input.value
   })
 
 ```
 
-## API汇总
+**注:**在`vue`中只有这些被代理的属性是响应的。如果在实例创建之后添加新的属性到实例上，它不会触发视图更新。就是因为实例创建之后新添加的属性`vue`没有进行重置。
+
+
+## 对象方法
+
+### 1. 序列化对象
+
+> 指将对象的状态转换为字符串（JSON.stringify()）或者将字符串还原为对象（JSON.parse()），
+
+```javascript
+ var o = {x: 2, y: {x1: 5, y1: 8}} 
+ var s = JSON.stringify(o) // => s是字符串{"x":2,"y":{"x1":5,"y1":8}}
+ var p = JSON.parse(s)   // => p是o的深度拷贝
+```
 
